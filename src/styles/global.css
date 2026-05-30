@@ -1,12 +1,46 @@
 :root {
+  /* Primary Gradient Colors */
   --accent: #3b82f6;
   --accent-dark: #1d4ed8;
+  --accent-light: #60a5fa;
+  --gradient-1: #3b82f6;
+  --gradient-2: #8b5cf6;
+  --gradient-3: #06b6d4;
+  --gradient-4: #ec4899;
+  --gradient-glow: #06b6d4;
+  
+  /* Light Theme */
   --black: 15, 18, 25;
   --gray: 94, 100, 121;
   --gray-light: 238, 242, 255;
   --gray-dark: 38, 50, 77;
   --bg: 248, 250, 255;
+  --bg-secondary: 255, 255, 255;
+  --text-primary: 15, 18, 25;
+  --text-secondary: 94, 100, 121;
+  
+  /* Box Shadow & Effects */
   --box-shadow: 0 16px 50px rgba(15, 23, 42, 0.08);
+  --glow-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+  --glow-shadow-purple: 0 0 20px rgba(139, 92, 246, 0.4);
+  --glow-shadow-cyan: 0 0 25px rgba(6, 182, 212, 0.5);
+  
+  /* Transitions */
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+  --black: 241, 245, 249;
+  --gray: 148, 163, 184;
+  --gray-light: 30, 41, 59;
+  --gray-dark: 203, 213, 225;
+  --bg: 15, 23, 42;
+  --bg-secondary: 30, 41, 59;
+  --text-primary: 241, 245, 249;
+  --text-secondary: 148, 163, 184;
 }
 
 * {
@@ -17,11 +51,15 @@ body {
   font-family: var(--font-atkinson);
   margin: 0;
   padding: 0;
-  background: radial-gradient(circle at top left, rgba(59, 130, 246, 0.14), transparent 35%),
-    linear-gradient(180deg, rgba(var(--bg), 1) 0%, #ffffff 40%, #f8fafc 100%);
-  color: rgb(var(--gray-dark));
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.15), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(6, 182, 212, 0.12), transparent 40%),
+    linear-gradient(135deg, rgba(var(--bg), 1) 0%, rgba(59, 130, 246, 0.05) 50%, rgba(139, 92, 246, 0.03) 100%);
+  background-attachment: fixed;
+  color: rgb(var(--text-primary));
   font-size: 18px;
   line-height: 1.75;
+  transition: background-color var(--transition-smooth), color var(--transition-smooth);
 }
 
 main {
@@ -32,10 +70,28 @@ main {
 
 a {
   color: var(--accent);
+  position: relative;
+  transition: color var(--transition-normal);
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gradient-1), var(--gradient-2), var(--gradient-4));
+  transition: width var(--transition-normal);
 }
 
 a:hover {
-  text-decoration: underline;
+  color: var(--gradient-2);
+  text-decoration: none;
+}
+
+a:hover::after {
+  width: 100%;
 }
 
 button,
@@ -46,6 +102,40 @@ textarea {
 
 button {
   cursor: pointer;
+  transition: all var(--transition-normal);
+  background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left var(--transition-normal);
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--glow-shadow), 0 6px 20px rgba(139, 92, 246, 0.3);
+}
+
+button:hover::before {
+  left: 100%;
+}
+
+button:active {
+  transform: translateY(0);
 }
 
 h1,
@@ -55,8 +145,12 @@ h4,
 h5,
 h6 {
   margin: 0 0 1rem 0;
-  color: rgb(var(--black));
+  color: rgb(var(--text-primary));
   line-height: 1.15;
+  background: linear-gradient(135deg, rgb(var(--text-primary)), var(--gradient-2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 h1 {
@@ -90,8 +184,16 @@ img {
 blockquote {
   margin: 1.5rem 0;
   padding: 1.25rem 1.5rem;
-  border-left: 4px solid rgba(59, 130, 246, 0.4);
-  background: rgba(59, 130, 246, 0.06);
+  border-left: 4px solid transparent;
+  border-image: linear-gradient(180deg, var(--gradient-1), var(--gradient-4)) 1;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(139, 92, 246, 0.08));
+  border-radius: 8px;
+  transition: all var(--transition-normal);
+}
+
+blockquote:hover {
+  box-shadow: var(--glow-shadow);
+  transform: translateX(4px);
 }
 
 hr {
@@ -116,10 +218,30 @@ code {
 
 input,
 textarea {
-  border: 1px solid rgba(15, 23, 42, 0.12);
+  border: 2px solid transparent;
   border-radius: 14px;
   padding: 1rem 1.1rem;
-  background: white;
+  background: rgb(var(--bg-secondary));
+  color: rgb(var(--text-primary));
+  transition: all var(--transition-normal);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--gradient-1);
+  background: rgb(var(--bg-secondary));
+  box-shadow: 
+    inset 0 2px 8px rgba(0, 0, 0, 0.05),
+    0 0 0 3px rgba(59, 130, 246, 0.1),
+    var(--glow-shadow);
+  transform: translateY(-1px);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 150px;
 }
 
 @media (max-width: 720px) {
@@ -128,6 +250,107 @@ textarea {
   }
   h1 {
     font-size: 2.6rem;
+  }
+}
+
+/* Utility Classes for Interactive Elements */
+.card {
+  background: rgb(var(--bg-secondary));
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: all var(--transition-normal);
+  border: 1px solid rgba(59, 130, 246, 0.1);
+  box-shadow: var(--box-shadow);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(59, 130, 246, 0.2);
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+.badge {
+  display: inline-block;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2));
+  color: var(--gradient-1);
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all var(--transition-normal);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.badge:hover {
+  border-color: var(--gradient-1);
+  box-shadow: var(--glow-shadow);
+  transform: scale(1.05);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2), var(--gradient-4));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+
+.glow-text {
+  text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+}
+
+.interactive-border {
+  position: relative;
+  overflow: hidden;
+}
+
+.interactive-border::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.5), transparent);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.fade-in {
+  animation: fadeIn var(--transition-smooth) ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-in {
+  animation: slideIn var(--transition-smooth) ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 
