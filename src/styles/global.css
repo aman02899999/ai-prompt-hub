@@ -31,6 +31,16 @@
   --transition-smooth: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+[data-theme="dark"] {
+  --black: 241, 245, 249;
+  --gray: 148, 163, 184;
+  --gray-light: 30, 41, 59;
+  --gray-dark: 203, 213, 225;
+  --bg: 15, 23, 42;
+  --bg-secondary: 30, 41, 59;
+  --text-primary: 241, 245, 249;
+  --text-secondary: 148, 163, 184;
+}
 
 * {
   box-sizing: border-box;

@@ -1,5 +1,7 @@
 ---
+import '../styles/global.css';
 import { SITE_TITLE } from '../consts';
+import ThemeToggle from './ThemeToggle.astro';
 
 const currentPath = Astro.url.pathname;
 const navLinks = [
@@ -21,6 +23,7 @@ const isActive = (href) =>
 				<a class={isActive(link.href) ? 'active' : ''} href={link.href}>{link.label}</a>
 			))}
 		</div>
+		<ThemeToggle />
 	</nav>
 </header>
 
