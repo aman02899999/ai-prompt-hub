@@ -1,0 +1,75 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Privacy Policy | ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="page-hero">
+				<p class="eyebrow">Privacy policy</p>
+				<h1>Privacy is built into every prompt guide.</h1>
+				<p>
+					AI Prompt Hub does not sell personal data, and any information shared through
+					newsletter sign-ups or contact forms is used only to respond to your request.
+				</p>
+			</section>
+
+			<section>
+				<h2>Information we collect</h2>
+				<p>
+					We may collect email addresses for newsletter subscriptions, contact form submissions,
+					and basic analytics for site performance. No payment data or sensitive financial details are stored.
+				</p>
+			</section>
+
+			<section>
+				<h2>How we use data</h2>
+				<ul>
+					<li>Deliver newsletter updates and prompt collections.</li>
+					<li>Respond to support requests.</li>
+					<li>Improve website performance and content recommendations.</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Third-party services</h2>
+				<p>
+					Our site may load analytics and advertising placeholders, but active Google AdSense code
+					is only added after you configure your account and privacy settings.
+				</p>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	main {
+		max-width: 900px;
+	}
+	.page-hero {
+		padding: 4rem 0 3rem;
+	}
+	.eyebrow {
+		font-size: 0.85rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.14em;
+		color: var(--accent);
+		margin-bottom: 1rem;
+	}
+	section {
+		margin-bottom: 2rem;
+	}
+	ul {
+		padding-left: 1.25rem;
+	}
+</style>

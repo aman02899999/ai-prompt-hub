@@ -1,0 +1,108 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Contact | ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="page-hero">
+				<p class="eyebrow">Get in touch</p>
+				<h1>Connect with the AI Prompt Hub team.</h1>
+				<p>
+					Have an idea for a prompt category, partnership, or feature request? Send a note and we’ll
+					follow up within one business day.
+				</p>
+			</section>
+
+			<section class="contact-grid">
+				<div>
+					<h2>Drop us a message</h2>
+					<form class="contact-form" action="mailto:hello@ai-prompt-hub.com" method="post" encType="text/plain">
+						<label for="name">Name</label>
+						<input id="name" name="name" type="text" placeholder="Your name" />
+
+						<label for="email">Email</label>
+						<input id="email" name="email" type="email" placeholder="you@example.com" />
+
+						<label for="message">Message</label>
+						<textarea id="message" name="message" rows="6" placeholder="Tell us about your project or question"></textarea>
+
+						<button type="submit">Send message</button>
+					</form>
+				</div>
+				<div class="contact-copy">
+					<h2>Contact details</h2>
+					<p><strong>Email</strong><br />hello@ai-prompt-hub.com</p>
+					<p><strong>Support</strong><br />Prompt workflow requests, blog ideas, and collaboration inquiries.</p>
+				</div>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	main {
+		max-width: 920px;
+	}
+	.page-hero {
+		padding: 4rem 0 3rem;
+	}
+	.eyebrow {
+		font-size: 0.85rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.13em;
+		color: var(--accent);
+		margin-bottom: 1rem;
+	}
+	.contact-grid {
+		display: grid;
+		grid-template-columns: 1.5fr 1fr;
+		gap: 2rem;
+	}
+	.contact-form {
+		display: grid;
+		gap: 1rem;
+	}
+	.contact-form label {
+		font-weight: 700;
+	}
+	.contact-form input,
+	.contact-form textarea {
+		width: 100%;
+		padding: 0.95rem 1rem;
+		border-radius: 12px;
+		border: 1px solid rgb(var(--gray-light));
+		background: white;
+	}
+	.contact-form button {
+		width: fit-content;
+		padding: 0.95rem 1.75rem;
+		border: none;
+		background: var(--accent);
+		color: white;
+		border-radius: 999px;
+		font-weight: 700;
+		cursor: pointer;
+	}
+	.contact-copy {
+		padding: 2rem;
+		background: white;
+		border-radius: 24px;
+		border: 1px solid rgb(var(--gray-light));
+	}
+	@media (max-width: 820px) {
+		.contact-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

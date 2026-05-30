@@ -5,78 +5,36 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
+import AdsensePlaceholder from '../components/AdsensePlaceholder.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, category } = Astro.props;
 ---
 
 <html lang="en">
 	<head>
 		<BaseHead title={title} description={description} />
-		<style>
-			main {
-				width: calc(100% - 2em);
-				max-width: 100%;
-				margin: 0;
-			}
-			.hero-image {
-				width: 100%;
-			}
-			.hero-image img {
-				display: block;
-				margin: 0 auto;
-				border-radius: 12px;
-				box-shadow: var(--box-shadow);
-			}
-			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
-			}
-			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
-				text-align: center;
-				line-height: 1;
-			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
-			}
-			.date {
-				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
-			}
-			.last-updated-on {
-				font-style: italic;
-			}
-		</style>
 	</head>
 
 	<body>
 		<Header />
 		<main>
-			<article>
-				<div class="hero-image">
-					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
+			<article class="post-shell">
+				<div class="hero-section">
+					<div class="post-meta">
+						<p class="meta-badge">{category}</p>
+						<div class="date-block">
+							<FormattedDate date={pubDate} />
+							{updatedDate && <span> • Updated <FormattedDate date={updatedDate} /></span>}
+						</div>
+					</div>
+					<h1>{title}</h1>
+					<p class="post-description">{description}</p>
+					{heroImage && <Image class="hero-image" width={1020} height={510} src={heroImage} alt={title} />}
 				</div>
 				<div class="prose">
-					<div class="title">
-						<div class="date">
-							<FormattedDate date={pubDate} />
-							{
-								updatedDate && (
-									<div class="last-updated-on">
-										Last updated on <FormattedDate date={updatedDate} />
-									</div>
-								)
-							}
-						</div>
-						<h1>{title}</h1>
-						<hr />
-					</div>
+					<AdsensePlaceholder />
 					<slot />
 				</div>
 			</article>
@@ -84,3 +42,51 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 		<Footer />
 	</body>
 </html>
+
+<style>
+	.post-shell {
+		max-width: 960px;
+		margin: auto;
+		padding: 2.5rem 0;
+	}
+	.hero-section {
+		padding-bottom: 2rem;
+		border-bottom: 1px solid rgb(var(--gray-light));
+	}
+	.meta-badge {
+		display: inline-flex;
+		padding: 0.45rem 0.95rem;
+		border-radius: 999px;
+		background: rgba(35, 55, 255, 0.12);
+		color: var(--accent);
+		font-weight: 700;
+		font-size: 0.95rem;
+	}
+	.date-block {
+		margin-top: 0.85rem;
+		color: rgb(var(--gray));
+		font-size: 0.95rem;
+	}
+	h1 {
+		margin: 1rem 0 0.5rem;
+		font-size: clamp(2.5rem, 4vw, 3.5rem);
+	}
+	.post-description {
+		margin: 0.5rem 0 1.5rem;
+		font-size: 1.15rem;
+		color: rgb(var(--gray-dark));
+	}
+	.hero-image {
+		width: 100%;
+		border-radius: 20px;
+		margin-top: 1.5rem;
+		box-shadow: var(--box-shadow);
+	}
+	.prose {
+		margin-top: 2rem;
+		color: rgb(var(--gray-dark));
+	}
+	.prose > * + * {
+		margin-top: 1.75rem;
+	}
+</style>

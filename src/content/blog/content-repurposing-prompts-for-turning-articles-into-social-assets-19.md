@@ -1,0 +1,33 @@
+---
+title: "Content repurposing prompts for turning articles into social assets"
+description: "Content repurposing prompts for turning articles into social assets — use this guide to generate polished results quickly and consistently."
+pubDate: "2025-06-19"
+category: "Marketing Prompts"
+tags:
+  - "marketing"
+  - "copywriting"
+---
+
+## Why this prompt works
+
+This article helps you use a structured prompt to generate consistent, high-value responses from your AI assistant. The example uses a clear task, context, and expected output format to improve reliability.
+
+## Sample prompt
+
+``
+Write a marketing prompts prompt for the following objective:
+
+Content repurposing prompts for turning articles into social assets
+
+Use a clear structure, examples, and output guidelines.
+``
+
+## How to use it
+
+1. Replace the objective with your specific goal.
+2. Provide any required context, such as tone, audience, or format.
+3. Ask the model to return results in a concise structure or checklist.
+
+## Customize for your workflow
+
+Change the prompt to include your product, audience, or campaign details. Use the same pattern across marketing, social, SEO, and productivity tasks to maintain consistent output quality.

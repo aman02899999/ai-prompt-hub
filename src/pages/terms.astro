@@ -1,0 +1,70 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Terms of Service | ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="page-hero">
+				<p class="eyebrow">Terms of service</p>
+				<h1>Simple terms for prompt publishing and usage.</h1>
+				<p>
+					By using AI Prompt Hub, you agree to browse and adapt the prompts for your own workflows.
+				</p>
+			</section>
+
+			<section>
+				<h2>Use of content</h2>
+				<p>
+					All content on AI Prompt Hub is provided for educational and productivity purposes. You are free
+					to reuse prompt formats and article ideas in your own projects.
+				</p>
+			</section>
+
+			<section>
+				<h2>Disclaimer</h2>
+				<p>
+					We strive to keep content accurate and up to date, but we do not guarantee results from third-party
+					AI tools or prompt execution.
+				</p>
+			</section>
+
+			<section>
+				<h2>Changes</h2>
+				<p>
+					AI Prompt Hub may update these terms as the site evolves. We recommend checking this page periodically
+					for the latest information.
+				</p>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	main {
+		max-width: 900px;
+	}
+	.page-hero {
+		padding: 4rem 0 3rem;
+	}
+	.eyebrow {
+		font-size: 0.85rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.14em;
+		color: var(--accent);
+		margin-bottom: 1rem;
+	}
+	section {
+		margin-bottom: 2rem;
+	}
+</style>
