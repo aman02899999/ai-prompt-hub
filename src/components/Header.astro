@@ -1,5 +1,6 @@
 ---
 import { SITE_TITLE } from '../consts';
+
 const currentPath = Astro.url.pathname;
 const navLinks = [
 	{ label: 'Home', href: '/' },
@@ -27,49 +28,86 @@ const isActive = (href) =>
 	header {
 		margin: 0;
 		padding: 1rem 1.25rem;
-		background: white;
-		border-bottom: 1px solid rgb(var(--gray-light));
+		background: rgb(var(--bg-secondary));
+		border-bottom: 2px solid;
+		border-image: linear-gradient(90deg, var(--gradient-1), var(--gradient-2), var(--gradient-4)) 1;
 		position: sticky;
 		top: 0;
 		z-index: 50;
+		transition: all var(--transition-smooth);
+		backdrop-filter: blur(10px);
+		box-shadow: 0 4px 30px rgba(59, 130, 246, 0.1);
 	}
 	nav {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 		gap: 1rem;
+		max-width: 1200px;
+		margin: 0 auto;
 	}
 	h2 {
 		margin: 0;
 		font-size: 1rem;
 	}
 	h2 a {
-		color: rgb(var(--black));
+		background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
 		text-decoration: none;
 		font-weight: 700;
+		transition: all var(--transition-normal);
 	}
+
+	h2 a:hover {
+		filter: brightness(1.2);
+	}
+
+	h2 a::after {
+		display: none;
+	}
+
 	.internal-links {
 		display: flex;
 		gap: 1rem;
 		flex-wrap: wrap;
+		align-items: center;
 	}
 	a {
-		color: rgb(var(--gray-dark));
+		color: rgb(var(--text-secondary));
 		text-decoration: none;
 		font-weight: 600;
 		padding: 0.75rem 0;
+		transition: all var(--transition-normal);
+		position: relative;
 	}
+
+	a::after {
+		bottom: -8px;
+	}
+
 	a.active {
-		color: var(--accent);
-		border-bottom: 3px solid var(--accent);
+		color: var(--gradient-1);
+		border-bottom: 3px solid var(--gradient-1);
 	}
+
+	a.active::after {
+		display: none;
+	}
+
 	@media (max-width: 720px) {
 		header {
 			padding: 1rem;
 		}
 		.internal-links {
 			width: 100%;
-			justify-content: space-between;
+			justify-content: flex-start;
+			gap: 0.5rem;
+		}
+		nav {
+			flex-direction: column;
+			align-items: flex-start;
 		}
 	}
 </style>

@@ -27,20 +27,53 @@ const year = new Date().getFullYear();
 <style>
 	footer {
 		padding: 3rem 1rem 4rem;
-		background: #0f172a;
+		background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.9));
 		color: #d8e3ff;
+		border-top: 2px solid;
+		border-image: linear-gradient(90deg, var(--gradient-1), var(--gradient-2), var(--gradient-4)) 1;
+		position: relative;
+		overflow: hidden;
 	}
+
+	footer::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		right: -50%;
+		width: 200%;
+		height: 100%;
+		background: radial-gradient(circle at 80% 50%, rgba(139, 92, 246, 0.15), transparent 50%);
+		pointer-events: none;
+	}
+
+	footer::after {
+		content: '';
+		position: absolute;
+		bottom: -50%;
+		left: -50%;
+		width: 200%;
+		height: 200%;
+		background: radial-gradient(circle at 20% 20%, rgba(6, 182, 212, 0.1), transparent 50%);
+		pointer-events: none;
+	}
+
 	.footer-columns {
 		display: grid;
 		grid-template-columns: 1.5fr 1fr;
 		gap: 2rem;
 		max-width: 1080px;
 		margin: auto;
+		position: relative;
+		z-index: 1;
 	}
 	.brand {
 		font-size: 1.05rem;
 		font-weight: 700;
 		margin-bottom: 0.75rem;
+		background: linear-gradient(135deg, var(--gradient-1), var(--gradient-4));
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
 	}
 	.footer-heading {
 		margin: 0 0 0.75rem;
@@ -48,6 +81,7 @@ const year = new Date().getFullYear();
 		font-weight: 700;
 		text-transform: uppercase;
 		letter-spacing: 0.12em;
+		color: #60a5fa;
 	}
 	nav {
 		display: grid;
@@ -56,14 +90,30 @@ const year = new Date().getFullYear();
 	a {
 		color: #d8e3ff;
 		text-decoration: none;
+		transition: all var(--transition-normal);
+		position: relative;
+		padding-bottom: 2px;
 	}
+
+	a::after {
+		bottom: 0;
+		background: linear-gradient(90deg, var(--gradient-2), var(--gradient-4));
+	}
+
 	a:hover {
-		color: white;
+		color: #60a5fa;
 	}
+
+	a:hover::after {
+		width: 100%;
+	}
+
 	.footer-bottom {
 		margin-top: 2rem;
 		text-align: center;
 		color: rgb(var(--gray-light));
+		position: relative;
+		z-index: 1;
 	}
 	@media (max-width: 720px) {
 		.footer-columns {
